@@ -1,3 +1,6 @@
+# Intelligent Systems Section 4
+# Platik Hitam
+
 import telegram
 import requests
 from datetime import datetime
