@@ -14,7 +14,7 @@ A telegram chatbot that reminds you about Islam prayer time and many more
 | Position               | Name         |
 |------------------------|--------------|
 | Full Stack Developer   | Elyas Asmad  |
-| Newbie Developer       | Haikal Akif  |
+| Frontend Developer     | Haikal Akif  |
 
 ## Built With
 
