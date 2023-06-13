@@ -22,6 +22,8 @@ def get_waktu_solat():
         print(pt.subuh.strftime('%I:%M %p'))
         print(pt.zohor.strftime('%I:%M %p'))
         print(pt.asar.strftime('%I:%M %p'))
+        print(pt.maghrib.strftime('%I:%M %p'))
+        print(pt.isyak.strftime('%I:%M %p'))
 
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
@@ -30,7 +32,7 @@ def get_waktu_solat():
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_chat_action('TYPING')
-    await update.message.reply_text(f'Kontol {update.effective_user.first_name}')
+    await update.message.reply_text(f'Hello {update.effective_user.first_name}!')
 
 async def get_date(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
