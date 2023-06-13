@@ -41,11 +41,22 @@ async def get_date(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_chat_action('TYPING')
     await update.message.reply_text('Today is: ' + today.strftime('%d-%b-%Y'))
 
+async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    await update.message.reply_chat_action('TYPING')
+    await update.message.reply_text(f'''
+All Commands
+
+/hello - greeting the bot
+/today - show today's date
+/help - show all commands
+''')
+
 app = ApplicationBuilder().token("5602722406:AAHrCpTfseKcmvK5hZibD6QmX8H3xkXgU3I").build()
 
 # Letak command sini
 app.add_handler(CommandHandler("hello", hello))
 app.add_handler(CommandHandler("today", get_date))
+app.add_handler(CommandHandler("help", help))
 
 app.run_polling()
 
