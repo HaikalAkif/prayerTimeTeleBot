@@ -34,10 +34,6 @@ async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_chat_action('TYPING')
     await update.message.reply_text(f'{update.effective_user.first_name} memang hensem')
 
-async def call(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_chat_action('TYPING')
-    await update.message.reply_audio('adzan.mp3', 'rb')
-
 async def get_date(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     
     today = datetime.now()
@@ -49,7 +45,6 @@ app = ApplicationBuilder().token("5602722406:AAHrCpTfseKcmvK5hZibD6QmX8H3xkXgU3I
 
 # Letak command sini
 app.add_handler(CommandHandler("hello", hello))
-app.add_handler(CommandHandler("adzan", call))
 app.add_handler(CommandHandler("today", get_date))
 
 app.run_polling()
