@@ -9,21 +9,19 @@ jakim_api = "https://www.e-solat.gov.my/index.php?r=esolatApi/TakwimSolat&period
 
 # def get_waktu_solat(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def get_waktu_solat():
-    
+
     try:
         response = requests.get(jakim_api)
         response.raise_for_status()
         prayer_times_dict = response.json()
-        
+
         pt = PrayerTimes(prayer_times_dict['prayerTime'][0])
-        
+
         # Contoh
         print(pt.date)
         print(pt.subuh.strftime('%I:%M %p'))
         print(pt.zohor.strftime('%I:%M %p'))
         print(pt.asar.strftime('%I:%M %p'))
-        print(pt.maghrib.strftime('%I:%M %p'))
-        print(pt.isyak.strftime('%I:%M %p'))
 
     except HTTPError as http_err:
         print(f'HTTP error occurred: {http_err}')
@@ -32,12 +30,12 @@ def get_waktu_solat():
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_chat_action('TYPING')
-    await update.message.reply_text(f'{update.effective_user.first_name} memang hensem')
+    await update.message.reply_text(f'Kontol {update.effective_user.first_name}')
 
 async def get_date(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    
+
     today = datetime.now()
-    
+
     await update.message.reply_chat_action('TYPING')
     await update.message.reply_text('Today is: ' + today.strftime('%d-%b-%Y'))
 
