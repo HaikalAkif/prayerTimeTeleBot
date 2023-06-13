@@ -124,12 +124,8 @@ async def button(update: Update, context: CallbackContext) -> None:
     """Parses the CallbackQuery and updates the message text."""
     query = update.callback_query
 
-    # CallbackQueries need to be answered, even if no notification to the user is needed
-    # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
     await query.answer()
 
-    # data_store[str(context._chat_id)]['default_location'] = query.data
-    # data_store[str(context._chat_id)]["default_location"].append(query.data)
     data_store.update({ str(context._chat_id): query.data })
 
     await query.edit_message_text(text=f"Your location preference has been set to: {BotConfig.get_zone_full_name(query.data)}")
