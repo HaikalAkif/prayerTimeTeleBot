@@ -68,7 +68,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 🤖 I am WaqtBot, your assistant in finding accurate prayer times in Selangor for various purposes.
 
-📌 Gombak(Zone 1) has been set as your default location, you can change your main zone by choosing /change_location
+📌 Gombak has been set as your default location, you can change your main zone by choosing /change_location
 
 ''')
     
