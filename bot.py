@@ -71,8 +71,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 ''')
     
-    await help(update, context)
-    
 async def get_prayer_times_today(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     
     pref = data_store.get(str(context._chat_id), 'SGR01')

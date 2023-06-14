@@ -26,7 +26,7 @@ class PrayerTimes:
         self.isyak = self.__convert_to_time__(pt_json['isha'])
 
     def __convert_to_time__(self, time: str):
-        return datetime.strptime(time, '%H:%M:%S')
+        return datetime.strptime(time, '%H:%M:%S') 
 
     def __convert_to_date__(self, date: str):
         return datetime.strptime(date, '%d-%b-%Y')
