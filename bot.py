@@ -1,17 +1,18 @@
 from telegram import Update, ReplyKeyboardMarkup, InlineKeyboardMarkup, InlineKeyboardButton
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, CallbackQueryHandler, CallbackContext
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes, CallbackQueryHandler, CallbackContext, MessageHandler, filters
 import requests
 from requests.exceptions import HTTPError
 from datetime import datetime
 from prayer_times import PrayerTimes
 from bot_config import BotConfig
-from supabase import create_client, Client
+import openai
 
-url: str = "https://otpxpqhixwzojqxidshg.supabase.co"
-key: str = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im90cHhwcWhpeHd6b2pxeGlkc2hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODY2ODQ0NDEsImV4cCI6MjAwMjI2MDQ0MX0.ReKar3Lrf8wBDfOpU6FfeUR0wFYtYDtMzHlo41gA21g"
-supabase: Client = create_client(url, key)
+openai.organization = "ORG_ID"
+openai.api_key = 'API_KEY'
 
 data_store = {}
+
+user_state = {}
 
 # def get_waktu_solat(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def get_waktu_solat(zone: str) -> PrayerTimes:
@@ -71,8 +72,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 ''')
     
-    await help(update, context)
-    
 async def get_prayer_times_today(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     
     pref = data_store.get(str(context._chat_id), 'SGR01')
@@ -128,15 +127,31 @@ async def check(update: Update, context: ContextTypes.DEFAULT_TYPE):
     pref = data_store.get(str(context._chat_id), 'SGR01')
 
     await update.message.reply_text(pref)
+    
+async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    await update.message.reply_chat_action('TYPING')
+    
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo-16k-0613",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant for Muslims. You are a Telegram bot with the name of WaqtBot. Start your message with assalamualaikum."},
+            {"role": "user", "content": update.message.text}
+        ]
+    )
+
+    await update.message.reply_text(completion.choices[0].message['content'])
 
 # All telegram commands here
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("prayer_times", get_prayer_times_today))
 app.add_handler(CommandHandler("change_location", change_location))
 app.add_handler(CommandHandler("hello", hello))
+app.add_handler(CommandHandler("chat", chat))
 app.add_handler(CommandHandler("today", get_date))
 app.add_handler(CommandHandler("help", help))
 app.add_handler(CommandHandler("check", check))
+app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, chat))
 
 app.add_handler(CallbackQueryHandler(button))
 
