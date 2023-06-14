@@ -17,6 +17,8 @@ zone_config = {
     "SGR01": "Gombak, Petaling, Sepang, Hulu Langat, Hulu Selangor, S.Alam",
     "SGR02": "Kuala Selangor, Sabak Bernam",
     "SGR03": "Klang, Kuala Langat",
+    "WLY01": "Kuala Lumpur, Putrajaya",
+    "WLY02": "Labuan",
 }
 
 class BotConfig():
@@ -37,7 +39,15 @@ class BotConfig():
             {
                 "code": "SGR03",
                 "name": "SGR03 - Klang, Kuala Langat"
-            }
+            },
+            {
+                "code": "WLY01",
+                "name": "WLY01 - Kuala Lumpur, Putrajaya"
+            },
+            {
+                "code": "WLY02",
+                "name": "WLY02 - Labuan"
+            },
         ]
         
     def get_zone_full_name(code: str):

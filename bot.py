@@ -51,6 +51,7 @@ All Commands
 
 /start - bot start
 /prayer_times - get today's prayer times
+/change_location - change user's preferred location
 /hello - greeting the bot
 /today - show today's date
 /help - show all commands
@@ -67,7 +68,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 📌 IIUM Gombak has been set as your default location, you can change your main IIUM campus by choosing /change_location
 
-''', parse_mode='Markdown')
+''')
     
 async def get_prayer_times_today(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     
@@ -105,20 +106,6 @@ async def change_location(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text('Choose your preferred location', reply_markup=reply_markup)
 
 app = ApplicationBuilder().token("5602722406:AAHrCpTfseKcmvK5hZibD6QmX8H3xkXgU3I").build()
-
-# Define the function to handle button clicks
-async def button_click(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    query = update.callback_query
-    data = query.data
-
-    # Handle different button clicks based on the data
-    if data == 'Gombak, Petaling, Sepang, Hulu Langat, Hulu Selangor, S.Alam':
-        await query.answer('You clicked Button 1')
-        # Do something when Button 1 is clicked
-    elif data == 'Kuala Selangor, Sabak Bernam':
-        await query.answer('You clicked Button 2')
-    elif data == 'Klang, Kuala Langat':
-        await query.answer('You clicked Button 3')
         
 async def button(update: Update, context: CallbackContext) -> None:
     """Parses the CallbackQuery and updates the message text."""
@@ -145,7 +132,6 @@ app.add_handler(CommandHandler("today", get_date))
 app.add_handler(CommandHandler("help", help))
 app.add_handler(CommandHandler("check", check))
 
-# app.add_handler(CallbackQueryHandler(button_click))
 app.add_handler(CallbackQueryHandler(button))
 
 app.run_polling()
