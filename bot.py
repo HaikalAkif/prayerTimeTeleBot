@@ -54,7 +54,7 @@ All Commands
 /change_location - change user's preferred location
 /hello - greeting the bot
 /today - show today's date
-/change_location - choose Selangor's zone
+/change_location - choose your location
 /help - show all commands
 ''')
     
@@ -67,7 +67,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 🤖 I am WaqtBot, your assistant in finding accurate prayer times in Selangor for various purposes.
 
-📌 Gombak(Zone 1) has been set as your default location, you can change your main zone by choosing /change_location
+📌 Gombak has been set as your default location, you can change your main zone by choosing /change_location
 
 ''')
     
