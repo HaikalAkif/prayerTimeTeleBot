@@ -71,6 +71,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 ''')
     
+    await help(update, context)
+    
 async def get_prayer_times_today(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     
     pref = data_store.get(str(context._chat_id), 'SGR01')
@@ -100,9 +102,12 @@ async def change_location(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     keyboard = BotConfig.get_available_locations()
     
-    result = map(lambda x: InlineKeyboardButton(x['name'].split(' - ')[1], callback_data=x['name'].split(' - ')[0]), keyboard)
+    result = []
     
-    reply_markup = InlineKeyboardMarkup([list(result)])
+    for item in keyboard:
+        result.append([InlineKeyboardButton(item['name'].split(' - ')[1], callback_data=item['name'].split(' - ')[0])])
+    
+    reply_markup = InlineKeyboardMarkup(result)
     
     await update.message.reply_text('Choose your preferred location', reply_markup=reply_markup)
 
