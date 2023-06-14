@@ -7,8 +7,8 @@ from prayer_times import PrayerTimes
 from bot_config import BotConfig
 import openai
 
-openai.organization = "ORG_ID"
-openai.api_key = 'API_KEY'
+openai.organization = "org-gV9pWOl1UvAB9sIJksieYKMY"
+openai.api_key = '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'
 
 data_store = {}
 
@@ -55,7 +55,7 @@ All Commands
 /change_location - change user's preferred location
 /hello - greeting the bot
 /today - show today's date
-/change_location - choose your location
+/change_location - choose Selangor's zone
 /help - show all commands
 ''')
     
@@ -68,7 +68,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 🤖 I am WaqtBot, your assistant in finding accurate prayer times in Selangor for various purposes.
 
-📌 Gombak has been set as your default location, you can change your main zone by choosing /change_location
+📌 Gombak(Zone 1) has been set as your default location, you can change your main zone by choosing /change_location
 
 ''')
     
@@ -135,7 +135,7 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-16k-0613",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant for Muslims. You are a Telegram bot with the name of WaqtBot. Start your message with assalamualaikum."},
+            {"role": "system", "content": "You are a helpful assistant for Muslims. You are a Telegram bot with the name of WaqtBot. Start your message with Islamic 'assalamualaikum' greetings."},
             {"role": "user", "content": update.message.text}
         ]
     )
