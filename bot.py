@@ -53,6 +53,7 @@ All Commands
 /prayer_times - get today's prayer times
 /hello - greeting the bot
 /today - show today's date
+/change_location - choose Selangor's zone
 /help - show all commands
 ''')
     
@@ -63,9 +64,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 👋🏻 It's great connecting with you, {update.message.chat.first_name}.
 
-🤖 I am WaqtBot, your assistant in finding accurate prayer times in IIUM for various purposes.
+🤖 I am WaqtBot, your assistant in finding accurate prayer times in Selangor for various purposes.
 
-📌 IIUM Gombak has been set as your default location, you can change your main IIUM campus by choosing /change_location
+📌 Gombak(Zone 1) has been set as your default location, you can change your main zone by choosing /change_location
 
 ''', parse_mode='Markdown')
     
@@ -136,7 +137,7 @@ async def check(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(pref)
 
-# Letak command sini
+# All telegram commands here
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("prayer_times", get_prayer_times_today))
 app.add_handler(CommandHandler("change_location", change_location))
