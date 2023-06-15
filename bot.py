@@ -7,6 +7,7 @@ from prayer_times import PrayerTimes
 from bot_config import BotConfig
 import openai
 
+# OpenAI key that we request from OpenAI website
 openai.organization = 'org-gV9pWOl1UvAB9sIJksieYKMY'
 openai.api_key = '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'
 
@@ -17,6 +18,7 @@ user_state = {}
 # def get_waktu_solat(update: Update, context: ContextTypes.DEFAULT_TYPE):
 def get_waktu_solat(zone: str) -> PrayerTimes:
 
+    # we use jakim api as our reliable and trusted prayer times database
     jakim_api = "https://www.e-solat.gov.my/index.php?r=esolatApi/TakwimSolat&period=today&zone=" + zone
 
     try:
