@@ -7,8 +7,8 @@ from prayer_times import PrayerTimes
 from bot_config import BotConfig
 import openai
 
-openai.organization = "org-gV9pWOl1UvAB9sIJksieYKMY"
-openai.api_key = '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'
+openai.organization = 'org-gV9pWOl1UvAB9sIJksieYKMY'
+openai.api_key = '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'
 
 data_store = {}
 
@@ -36,7 +36,7 @@ def get_waktu_solat(zone: str) -> PrayerTimes:
 
 async def hello(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_chat_action('TYPING')
-    await update.message.reply_text(f'Hello {update.effective_user.first_name}!')
+    await update.message.reply_text(f'Hello {update.effective_user.first_name}! How can I help you?')
 
 async def get_date(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
@@ -130,13 +130,15 @@ async def check(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
 async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
+    print(f'{update.message.chat.first_name} ({update.message.chat.username}): {update.message.text}')
+
     await update.message.reply_chat_action('TYPING')
     
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-16k-0613",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant for Muslims. You are a Telegram bot with the name of WaqtBot. Start your message with Islamic 'assalamualaikum' greetings."},
-            {"role": "user", "content": update.message.text}
+            {"role": "system", "content": "You are a helpful assistant for Muslims. You are a Telegram bot with the name of WaqtBot. Only reply things and issues that related to Islam. Don't start your message with waalaikumsalam or assalamualaikum"},
+            {"role": "user", "content": update.message.text},
         ]
     )
 
