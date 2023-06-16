@@ -9,13 +9,6 @@ A telegram chatbot that reminds you about Islam prayer time and many more
     <li><a href="#built-with">Built With</a></li>
   </ol>
 
-## Contributor
-
-| Position               | Name         |
-|------------------------|--------------|
-| Full Stack Developer   | Elyas Asmad  |
-| Frontend Developer     | Haikal Akif  |
-
 ## Built With
 
 <img src="https://seeklogo.com/images/P/python-logo-A32636CAA3-seeklogo.com.png" alt="python" width="40" height="40"/>

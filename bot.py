@@ -9,7 +9,7 @@ import openai
 
 # OpenAI key that we request from OpenAI website
 openai.organization = 'org-gV9pWOl1UvAB9sIJksieYKMY'
-openai.api_key = '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'
+openai.api_key = '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'
 
 data_store = {}
 
@@ -72,7 +72,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 📌 Gombak has been set as your default location, you can change your main zone by choosing /change_location
 
-''')
+🧔🏻 Tested and maintained by <a href='https://t.me/Haikal_Akif'>Haikal Akif</a>. Visit my GitHub profile at <a href='https://github.com/HaikalAkif'>iKool's GitHub</a>.
+
+''', parse_mode='HTML')
     
 async def get_prayer_times_today(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     
