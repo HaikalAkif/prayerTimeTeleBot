@@ -8,8 +8,8 @@ from bot_config import BotConfig
 import openai
 
 # OpenAI key that we request from OpenAI website
-openai.organization = 'org-gV9pWOl1UvAB9sIJksieYKMY'
-openai.api_key = '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'
+openai.organization = ''
+openai.api_key = ''
 
 data_store = {}
 
